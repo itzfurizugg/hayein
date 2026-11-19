@@ -1,0 +1,65 @@
+name: GO GREEENNNNN HAYEIN
+
+on:
+  schedule:
+    # Berjalan otomatis setiap hari pukul 00:00 UTC (07:00 WIB)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Agar bisa dijalankan manual lewat tab Actions di GitHub
+
+jobs:
+  auto_push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Sequential Pushes
+        run: |
+          git config --global user.name "${{ secrets.GIT_NAME }}"
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          
+          # Pull perubahan terbaru untuk mencegah conflict
+          git pull --rebase origin main
+
+          # Daftar file sesuai struktur repo hayein
+          files=("dwayne.json" "lamine.yaml" "lim.bat" "mahfud.md" "mr.bin" "pewdie.py" "raja.java" "taylor.swift" "yntk.ts")
+          
+          for i in {1..8}
+          do
+            # Pilih 1 file secara acak
+            target_file=${files[$RANDOM % ${#files[@]}]}
+            
+            # Update isi file sesuai format masing-masing ekstensi
+            if [[ "$target_file" == *.py || "$target_file" == *.yaml ]]; then
+                sed -i '/# Updated at/d' "$target_file"
+                echo "# Updated at $(date)" >> "$target_file"
+                
+            elif [[ "$target_file" == *.java || "$target_file" == *.swift || "$target_file" == *.ts ]]; then
+                sed -i '/\/\/ Updated at/d' "$target_file"
+                echo "// Updated at $(date)" >> "$target_file"
+                
+            elif [[ "$target_file" == *.bat ]]; then
+                sed -i '/REM Updated at/d' "$target_file"
+                echo "REM Updated at $(date)" >> "$target_file"
+                
+            elif [[ "$target_file" == *.md ]]; then
+                sed -i '/<!-- Updated at/d' "$target_file"
+                echo "<!-- Updated at $(date) -->" >> "$target_file"
+                
+            elif [[ "$target_file" == *.json ]]; then
+                echo "{\"last_updated\": \"$(date)\", \"project\": \"hayein\"}" > "$target_file"
+                
+            else
+                # Untuk mr.bin
+                echo "Updated at $(date)" > "$target_file"
+            fi
+            
+            git add .
+            git commit --author="${{ secrets.GIT_NAME }} <${{ secrets.GIT_EMAIL }}>" -m "lucu lo lol"
+            git push origin main
+            
+            # Jeda 2 detik antar commit
+            sleep 2
+          done
