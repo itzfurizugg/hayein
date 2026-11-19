@@ -3,7 +3,7 @@ name: new jeans kapan kombek jir
 on:
   schedule:
     # Berjalan otomatis setiap hari pukul 00:00 UTC (07:00 WIB)
-    - cron: '0 0 * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch: # Agar bisa dijalankan manual lewat tab Actions di GitHub
 
 jobs:
