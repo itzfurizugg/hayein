@@ -1,15 +1,1 @@
-{
-  "namaLengkap": "Dwayne Douglas Johnson",
-  "julukan": "The Rock",
-  "profesi": ["pegulat WWE", "aktor", "produser"],
-  "tinggiBadan": "1,93 m",
-  "gerakanAndalan": "People's Elbow & The Rock Bottom",
-  "filmTerkenal": [
-    "The Fast and the Furious",
-    "Jumanji: Welcome to the Jungle",
-    "Moana",
-    "Black Adam"
-  ],
-  "quote": "Jangan pernah menyerah. Bahkan kalau deadline-nya mepet.",
-  "catatanPlesetan": "Kenapa .json? Karena 'Dwayne John-son' dipangkas jadi 'dwayne.json'."
-}
+{"last_updated": "Fri Nov 20 00:29:16 UTC 2026", "project": "hayein"}
