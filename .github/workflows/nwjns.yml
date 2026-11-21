@@ -3,7 +3,7 @@ name: new jeans kapan kombek jir
 on:
   schedule:
     # Berjalan otomatis setiap hari pukul 00:00 UTC (07:00 WIB)
-    - cron: '0 */6 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch: # Agar bisa dijalankan manual lewat tab Actions di GitHub
 
 jobs:
@@ -26,7 +26,8 @@ jobs:
           # Daftar file sesuai struktur repo hayein
           files=("dwayne.json" "lamine.yaml" "lim.bat" "mahfud.md" "mr.bin" "pewdie.py" "raja.java" "taylor.swift" "yntk.ts")
           
-          for i in {1..8}
+          # Diubah jadi 2 kali putaran saja (2 commit per jalan)
+          for i in {1..2}
           do
             # Pilih 1 file secara acak
             target_file=${files[$RANDOM % ${#files[@]}]}
@@ -57,7 +58,7 @@ jobs:
             fi
             
             git add .
-            git commit --author="${{ secrets.GIT_NAME }} <${{ secrets.GIT_EMAIL }}>" -m "lucu lo lol"
+            git commit --author="${{ secrets.GIT_NAME }} <${{ secrets.GIT_EMAIL }}>" -m "lucu lo lol $i/2"
             git push origin main
             
             # Jeda 2 detik antar commit
