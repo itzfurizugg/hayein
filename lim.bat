@@ -34,4 +34,4 @@ if "%pilih%"=="3" (
 echo.
 echo  Ingat: jangan pernah bertanya "gimana caranya?"
 pause
-REM Updated at Fri Nov 20 23:52:15 UTC 2026
+REM Updated at Mon Nov 23 06:48:17 UTC 2026
